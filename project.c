@@ -1,24 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <conio.h>
+#include <string.h>
 
-void headMessage();
 void welcomeMessage();
 void endl();
 void length();
-void mass();
+void mass();     //these function will be calculating the values..
 void area();
 void time();
 void data();
+void temp();
 void BMI();
 
+// This are Date Calculation Funtion...
+struct Date;
+int isLeapYear(int year);
+int daysInMonth(int month, int year);
+void dateDifference(struct Date start, struct Date end, int *years, int *months, int *days);
+void date(); // Main Date Calculate Function....
+
 int main() {
-
-headMessage();
-welcomeMessage();
-
 int choice;
 
+system("COLOR 3"); //backgroun color - black
+                   //Front color - Blue (Aqua)
+welcomeMessage();
+
 while(1) {
+     
     printf("\n\n\t\t\t\t\t\t   MAIN MENU \n");
     printf("\t\t\t\t\t===============================\n");
     printf("\t\t\t\t\t [1]  Length Conversion\n");
@@ -26,12 +36,12 @@ while(1) {
     printf("\t\t\t\t\t [3]  Area Conversion\n");
     printf("\t\t\t\t\t [4]  Time Conversion\n");
     printf("\t\t\t\t\t [5]  Data Conversion\n");
+    printf("\t\t\t\t\t [6]  Temperature Conversion\n");
+    printf("\t\t\t\t\t [7]  BMI Calculater\n");
+    printf("\t\t\t\t\t [8]  Date Calculation\n");
 //     printf("\t\t\t\t\t [6]  Volume Conversion\n");
-//     printf("\t\t\t\t\t [7]  Date Conversion\n");
 //     printf("\t\t\t\t\t [8]  Speed Conversion\n");
-//     printf("\t\t\t\t\t [9]  Temperature Conversion\n");
 //     printf("\t\t\t\t\t [10] Numeral System Conversion\n");
-    printf("\t\t\t\t\t [6] BMI Calculater\n");
     printf("\t\t\t\t\t [0]  Exit\n");
     printf("\t\t\t\t\t===============================\n");
 
@@ -49,37 +59,36 @@ while(1) {
             break;
             case 5: data();
             break;
-        //     case 6:
-        //     break;
-        //     case 7:
-        //     break;
+            case 6: temp();
+            break;
+            case 7: BMI();
+            break;
+            case 8: date();
+            break;
         //     case 8:
         //     break;
         //     case 9:
         //     break;
         //     case 10:
         //     break;
-            case 6: BMI();
-                    endl();
-            break;
             case 0: printf("\n\n\t\t\t\t\t\t     * Thank You ! *\n\t\t\t\t\t\t   * Have A Nice Day.*\n");
                      endl();
                      exit(0);
             break;
             default: printf("\n\n\t\t\t\t\tINVALID INPUT!!! Try again...\n");
+                     printf("Enter any key to continue...");
                      endl();
         }
-
 }
 
 return 0;
 }
 
 // ....Heading Design (front style)....
-void headMessage()
+/// ...Welcome To Unit Conversion....
+void welcomeMessage()
 {
-   
-    printf("\t\t\t###########################################################################");
+        printf("\n\t\t\t###########################################################################");
     printf("\n\t\t\t############                                                   ############");
     printf("\n\t\t\t############       UNIT CONVERSION SYSTEM PROJECT IN C         ############");
     printf("\n\t\t\t############                                                   ############");
@@ -95,12 +104,7 @@ void headMessage()
     printf("\t\t\t\t\t    ***********************************\n");
     
     printf("\n\t\t\t----------------------------------------------------------------------------");
-}
 
-/// ...Welcome To Unit Conversion....
-void welcomeMessage()
-{
-    
     printf("\n\n\n");
     printf("\n\t\t\t\t  **-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**\n");
     printf("\n\t\t\t\t        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
@@ -115,7 +119,7 @@ void welcomeMessage()
 }
 // ...End line Design Function...
 void endl() {
-    printf("\t\t\t\t\t*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*\n");
+    printf("\t\t\t\t\t................................................\n");
 }
 
 // ..Length Conversion Function...
@@ -127,72 +131,178 @@ void length() {
         printf("\n\n\n\t\t\t\t\t\t===========================\n");
         printf("\t\t\t\t\t\t  ** Length Conversion **\n");
         printf("\t\t\t\t\t\t===========================\n");
-        printf("\t\t\t\t\t\t[1] [Kilometer >---> Meter]\n");
-        printf("\t\t\t\t\t\t[2] [Meter >---> Kilometer]\n");
-        printf("\t\t\t\t\t\t[3] [Centimeter >---> Meter]\n");
-        printf("\t\t\t\t\t\t[4] [Meter >---> Centimeter]\n");
-        printf("\t\t\t\t\t\t[5] [Kilometer >---> Centimeter]\n");
-        printf("\t\t\t\t\t\t[6] [Centimeter >---> Kilometer]\n");
-        printf("\t\t\t\t\t\t[0] ...Main Menu...\n");
+        printf("\t\t\t\t\t[1] Cm --> Mile    |  [9]  Ft --> Mile\n");
+        printf("\t\t\t\t\t[2] Cm --> Km      |  [10] Ft --> Km\n");
+        printf("\t\t\t\t\t[3] Cm --> M       |  [11] Ft --> m\n");
+        printf("\t\t\t\t\t[4] Cm --> Ft      |  [12] Ft --> Cm\n");
+        printf("\t\t\t\t\t[5] M  --> Mile    |  [13] Km --> Mile\n");
+        printf("\t\t\t\t\t[6] M  --> Km      |  [14] Km --> M\n");
+        printf("\t\t\t\t\t[7] M  --> Ft      |  [15] Km --> Ft\n");
+        printf("\t\t\t\t\t[8] M  --> Cm      |  [16] Km --> Cm\n");
+        printf("\t\t\t\t\t[17] Mile  --> Km  |  [18] Mile --> Ft\n");
+        printf("\t\t\t\t\t[19] Mile  --> M   |  [20] Mile --> Cm\n");
+        printf("\t\t\t\t\t\t   [21] LtY -->  Km\n");
+        
+        printf("\t\t\t\t\t\t   [0] ...Main Menu...\n");
         printf("\t\t\t\t\t\t===========================\n");
 
         printf("\t\t\t\t\tEnter A Option: ");
         scanf("%d", &option);
+
     // ...Some Length  Conversion...
         switch(option) {
-            case 1: printf("\n\n");
-                    printf("\t\t\t\t\t\t [1] Kilometer -To- Meter\n");
+            case 1: printf("\n\n\t\t\t\t\t\t [1] Cm -To- Mile\n");
                     endl();
-                    printf("\t\t\t\t\t  Enter Kilometer : ");
+                    printf("\t\t\t\t\t  Enter Cm : ");
                     scanf("%lf", &num);
-                    printf("\n\t\t\t\t\t  %.2lf Kilometer = %.2lf Meter\n", num, num * 1000);
+                    printf("\n\t\t\t\t\t  %.2lf Cm = %.8lf Mile\n", num, num / 160934.4);
                     endl();
             break; 
-            case 2: printf("\n\n");
-                    printf("\t\t\t\t\t\t [2] Meter -To- Kilometer\n");
+            case 2: printf("\n\n\t\t\t\t\t\t [2] Cm -To- Km\n");
                     endl();
-                    printf("\t\t\t\t\t  Enter Meter : ");
+                    printf("\t\t\t\t\t  Enter Cm : ");
                     scanf("%lf", &num);
-                    printf("\n\t\t\t\t\t%.2lf Meter = %.3lf Kilometer\n", num, num / 1000);
+                    printf("\n\t\t\t\t\t  %.2lf Cm = %.5lf Km\n", num, num / 100000);
                     endl();
             break; 
-            case 3: printf("\n\n");
-                    printf("\t\t\t\t\t\t [3] Centimeter -To- Meter\n");
+            case 3: printf("\n\n\t\t\t\t\t\t [3] Cm -To- M\n");
                     endl();
-                    printf("\t\t\t\t\t  Enter Centimeter : ");
+                    printf("\t\t\t\t\t  Enter Cm : ");
                     scanf("%lf", &num);
-                    printf("\n\t\t\t\t\t%.2lf Centimeter = %.4lf Meter\n", num, num / 100);
+                    printf("\n\t\t\t\t\t  %.2lf Cm = %.3lf M\n", num, num / 100);
                     endl();
             break;
-            case 4: printf("\n\n");
-                    printf("\t\t\t\t\t\t [4] Meter -To- Centimeter\n");
+            case 4: printf("\n\n\t\t\t\t\t\t [4] Cm -To- Ft\n");
                     endl();
-                    printf("\t\t\t\t\t  Enter Meter : ");
+                    printf("\t\t\t\t\t  Enter Cm : ");
                     scanf("%lf", &num);
-                    printf("\n\t\t\t\t\t%.2lf Meter = %.2lf Centimeter\n", num, num * 100);
+                    printf("\n\t\t\t\t\t  %.2lf Cm = %.3lf Ft\n", num, num / 30.48);
                     endl();
             break;
-            case 5: printf("\n\n");
-                    printf("\t\t\t\t\t\t [5] Kilometer -To- Centimeter\n");
+            case 5: printf("\n\n\t\t\t\t\t\t [5] M -To- Mile\n");
                     endl();
-                    printf("\t\t\t\t\t  Enter Kilometer : ");
+                    printf("\t\t\t\t\t  Enter M : ");
                     scanf("%lf", &num);
-                    printf("\n\t\t\t\t\t%.4lf Kilometer = %.2lf Centimeter\n", num, num * 100000);
+                    printf("\n\t\t\t\t\t  %.2lf M = %.5lf Mile\n", num, num / 1609.344);
                     endl();
             break;
-            case 6: printf("\n\n");
-                    printf("\t\t\t\t\t\t [6] Centimeter -To- Kilometer\n");
+            case 6: printf("\n\n\t\t\t\t\t\t [6] M -To- Km\n");
                     endl();
-                    printf("\t\t\t\t\t  Enter Centimeter : ");
+                    printf("\t\t\t\t\t  Enter M : ");
                     scanf("%lf", &num);
-                    printf("\n\t\t\t\t\t%.2lf Centimeter = %.4lf Kilometer\n", num, num / 100000);
+                    printf("\n\t\t\t\t\t  %.2lf M = %.3lf Km\n", num, num / 1000);
                     endl();
             break;
+            case 7: printf("\n\n\t\t\t\t\t\t [7] M -To- Ft\n");
+                    endl();
+                    printf("\t\t\t\t\t  Enter M : ");
+                    scanf("%lf", &num);
+                    printf("\n\t\t\t\t\t  %.2lf M = %.2lf Ft\n", num, num * 3.280839895013123359);
+                    endl();
+            break;
+            case 8: printf("\n\n\t\t\t\t\t\t [8] M -To- Cm\n");
+                    endl();
+                    printf("\t\t\t\t\t  Enter M : ");
+                    scanf("%lf", &num);
+                    printf("\n\t\t\t\t\t  %.3lf M = %.2lf Cm\n", num, num * 100);
+                    endl();
+            break;
+            case 9: printf("\n\n\t\t\t\t\t\t [9] Ft -To- Mile\n");
+                    endl();
+                    printf("\t\t\t\t\t  Enter Ft : ");
+                    scanf("%lf", &num);
+                    printf("\n\t\t\t\t\t  %.2lf Ft = %.5lf Mile\n", num, num / 5280);
+                    endl();
+            break;
+            case 10: printf("\n\n\t\t\t\t\t\t [10] Ft -To- Km\n");
+                    endl();
+                    printf("\t\t\t\t\t  Enter Ft : ");
+                    scanf("%lf", &num);
+                    printf("\n\t\t\t\t\t  %.2lf Ft = %.4lf Km\n", num, num / 3280.83989501312336);
+                    endl();
+            break;
+            case 11: printf("\n\n\t\t\t\t\t\t [11] Ft -To- M\n");
+                    endl();
+                    printf("\t\t\t\t\t  Enter Ft : ");
+                    scanf("%lf", &num);
+                    printf("\n\t\t\t\t\t  %.2lf Ft = %.3lf M\n", num, num / 3.280839895013123359);
+                    endl();
+            break;
+            case 12: printf("\n\n\t\t\t\t\t\t [12] Ft -To- Cm\n");
+                    endl();
+                    printf("\t\t\t\t\t  Enter Ft : ");
+                    scanf("%lf", &num);
+                    printf("\n\t\t\t\t\t  %.4lf Ft = %.2lf Cm\n", num, num * 30.48);
+                    endl();
+            break;
+            case 13: printf("\n\n\t\t\t\t\t\t [13] Km -To- Mile\n");
+                    endl();
+                    printf("\t\t\t\t\t  Enter Km : ");
+                    scanf("%lf", &num);
+                    printf("\n\t\t\t\t\t  %.2lf Km = %.3lf Mile\n", num, num / 1.609344);
+                    endl();
+            break;
+            case 14: printf("\n\n\t\t\t\t\t\t [14] Km -To- M\n");
+                    endl();
+                    printf("\t\t\t\t\t  Enter Km : ");
+                    scanf("%lf", &num);
+                    printf("\n\t\t\t\t\t  %.4lf Km = %.2lf M\n", num, num * 1000);
+                    endl();
+            break;
+            case 15: printf("\n\n\t\t\t\t\t\t [15] Km -To- Ft\n");
+                    endl();
+                    printf("\t\t\t\t\t  Enter Km : ");
+                    scanf("%lf", &num);
+                    printf("\n\t\t\t\t\t  %.3lf Km = %.2lf Ft\n", num, num * 3280.839895013);
+                    endl();
+            break;
+            case 16: printf("\n\n\t\t\t\t\t\t [16] Km -To- Cm\n");
+                    endl();
+                    printf("\t\t\t\t\t  Enter Km : ");
+                    scanf("%lf", &num);
+                    printf("\n\t\t\t\t\t  %.3lf Km = %.2lf Cm\n", num, num * 100000);
+                    endl();
+            break;
+            case 17: printf("\n\n\t\t\t\t\t\t [17] Mile -To- Km\n");
+                    endl();
+                    printf("\t\t\t\t\t  Enter Mile : ");
+                    scanf("%lf", &num);
+                    printf("\n\t\t\t\t\t  %.3lf Mile = %.2lf Km\n", num, num * 1.609344);
+                    endl();
+            break;
+            case 18: printf("\n\n\t\t\t\t\t\t [18] Mile -To- M\n");
+                    endl();
+                    printf("\t\t\t\t\t  Enter Mile : ");
+                    scanf("%lf", &num);
+                    printf("\n\t\t\t\t\t  %.3lf Mile = %.2lf M\n", num, num * 1609.344);
+                    endl();
+            break;
+            case 19: printf("\n\n\t\t\t\t\t\t [19] Mile -To- Ft\n");
+                    endl();
+                    printf("\t\t\t\t\t  Enter Mile : ");
+                    scanf("%lf", &num);
+                    printf("\n\t\t\t\t\t  %.3lf Mile = %.2lf Ft\n", num, num * 5280);
+                    endl();
+            break;
+            case 20: printf("\n\n\t\t\t\t\t\t [20] Mile -To- Cm\n");
+                    endl();
+                    printf("\t\t\t\t\t  Enter Mile : ");
+                    scanf("%lf", &num);
+                    printf("\n\t\t\t\t\t  %.3lf Mile = %.2lf Cm\n", num, num * 160934.4);
+                    endl();
+            break;
+            case 21: printf("\n\n\t\t\t\t\t\t [20] LtY -To- Km\n");
+                    endl();
+                    printf("\t\t\t\t\t  Enter LtY : ");
+                    scanf("%lf", &num);
+                    printf("\n\t\t\t\t\t  %.3lf LtY = %.2lf Km\n", num, num * 9460730472580.8);
+                    endl();
+            break;
+
             case 0:
             printf("\n\n\t\t\t\t\tReturn to Main Menu...!\n");
             endl();
             return;
-            break;
         default:
             printf("\n\n\t\t\t\t\tINVALID INPUT!!! Try again...\n");
             endl();
@@ -208,15 +318,19 @@ void mass() {
     while(1) {
         printf("\n\n\n\t\t\t\t\t\t===========================\n");
         printf("\t\t\t\t\t\t   ** Mass Conversion **\n");
-        printf("\t\t\t\t\t\t===========================\n");
-        printf("\t\t\t\t\t\t 1. [Tonne]  >>  [Kilogram]\n");
+        printf("\t\t\t\t\t\t===============================\n");
+        printf("\t\t\t\t\t\t 1. [Tonne]     >>  [Kilogram]\n");
         printf("\t\t\t\t\t\t 2. [Kilogram]  >>  [Tonne]\n");
-        printf("\t\t\t\t\t\t 3. [Tonne]  >>  [Gram]\n");
-        printf("\t\t\t\t\t\t 4. [Gram]  >>  [Tonne]\n");
+        printf("\t\t\t\t\t\t 3. [Tonne]     >>  [Gram]\n");
+        printf("\t\t\t\t\t\t 4. [Gram]      >>  [Tonne]\n");
         printf("\t\t\t\t\t\t 5. [Kilogram]  >>  [Gram]\n");
-        printf("\t\t\t\t\t\t 6. [Gram]  >>  [Kilogram]\n");
+        printf("\t\t\t\t\t\t 6. [Gram]      >>  [Kilogram]\n");
+        printf("\t\t\t\t\t\t 7. [Pound]     >>  [Kilogram]\n");
+        printf("\t\t\t\t\t\t 8. [Pound]     >>  [Gram]\n");
+        printf("\t\t\t\t\t\t 9. [Kilogram]  >>  [Pound]\n");
+        printf("\t\t\t\t\t\t 10.[Gram]      >>  [Pound]\n");
         printf("\t\t\t\t\t\t 0. ...Main Menu...\n");
-        printf("\t\t\t\t\t\t===========================\n");
+        printf("\t\t\t\t\t\t===============================\n");
 
         printf("\t\t\t\t\tEnter A Option: ");
         scanf("%d", &option);
@@ -264,6 +378,34 @@ void mass() {
                     printf("\t\t\t\t\t Enter Gram : ");
                     scanf("%lf", &mass);
                     printf("\n\t\t\t\t\t%.2lf Gram = %.4lf Kilogram\n", mass, mass / 1000);
+                    endl();
+            break;
+            case 7: printf("\n\n\t\t\t\t\t [7] Pound -To- Kilogram\n");
+                    endl();
+                    printf("\t\t\t\t\t Enter Pound : ");
+                    scanf("%lf", &mass);
+                    printf("\n\t\t\t\t\t%.2lf Pound = %.2lf Kilogram\n", mass, mass * 0.45359237);
+                    endl();
+            break;
+            case 8: printf("\n\n\t\t\t\t\t [8] Pound -To- Gram\n");
+                    endl();
+                    printf("\t\t\t\t\t Enter Pound : ");
+                    scanf("%lf", &mass);
+                    printf("\n\t\t\t\t\t%.4lf Pound = %.2lf Gram\n", mass, mass * 453.59237);
+                    endl();
+            break;
+            case 9: printf("\n\n\t\t\t\t\t [9] Kilogram -To- Pound\n");
+                    endl();
+                    printf("\t\t\t\t\t Enter Kilogram : ");
+                    scanf("%lf", &mass);
+                    printf("\n\t\t\t\t\t%.2lf Kilogram = %.2lf Pound\n", mass, mass / 0.45359237);
+                    endl();
+            break;
+            case 10: printf("\n\n\t\t\t\t\t [10] Gram -To- Pound\n");
+                    endl();
+                    printf("\t\t\t\t\t Enter Gram : ");
+                    scanf("%lf", &mass);
+                    printf("\n\t\t\t\t\t%.2lf Gram = %.4lf Pound\n", mass, mass / 453.59237);
                     endl();
             break;
             case 0:
@@ -569,4 +711,149 @@ void BMI() {
         endl();
         return;
     }
+}
+
+//Temperature Conversion Function...
+void temp() {
+    int option;
+    double t;
+
+    while(1) {
+        printf("\n\n\n\t\t\t\t\t\t===========================\n");
+        printf("\t\t\t\t\t\t  ** Temperature Conversion **\n");
+        printf("\t\t\t\t\t\t==========================================\n");
+        printf("\t\t\t\t\t\t [1] Cel -> Far\n");
+        printf("\t\t\t\t\t\t [2] Cel -> Kel\n");
+        printf("\t\t\t\t\t\t [3] Far -> Cel\n");
+        printf("\t\t\t\t\t\t [4] Far -> Kel\n");
+        printf("\t\t\t\t\t\t [5] Kel -> Cel\n");
+        printf("\t\t\t\t\t\t [6] Kel -> Far\n");
+        printf("\t\t\t\t\t\t [0] ...Main Menu...\n");
+        printf("\t\t\t\t\t\t==========================================\n");
+
+        printf("\t\t\t\t\tEnter A Option: ");
+        scanf("%d", &option);
+    // ...Some Temperature  Conversion...
+        switch(option) {
+            case 1: printf("\n\n\t\t\t\t\t [1] Celsius  To Fahrenheit\n");
+                    endl();
+                    printf("\t\t\t\t\t Enter temperature in Celsius : ");
+                    scanf("%lf", &t);
+                    printf("\n\t\t\t\t\t%.2lf Cel is %.2lf Far\n", t, (t * 9.0 / 5.0) + 32.0);
+                    endl();
+            break; 
+            case 2: printf("\n\n\t\t\t\t\t [2] Celsius  To Kelvin\n");
+                    endl();
+                    printf("\t\t\t\t\t Enter temperature in Celsius : ");
+                    scanf("%lf", &t);
+                    printf("\n\t\t\t\t\t%.2lf Cel is %.3lf Kel\n", t, t + 273.15);
+                    endl();
+            break;
+            case 3: printf("\n\n\t\t\t\t\t [3] Fahrenheit  To Celsius\n");
+                    endl();
+                    printf("\t\t\t\t\t Enter temperature in Fahrenheit : ");
+                    scanf("%lf", &t);
+                    printf("\n\t\t\t\t\t%.2lf Far is %.2lf Cel\n", t, (t - 32.0) * 5.0 / 9.0);
+                    endl();
+            break;
+            case 4: printf("\n\n\t\t\t\t\t [4] Fahrenheit  To Kelvin\n");
+                    endl();
+                    printf("\t\t\t\t\t Enter temperature in Fahrenheit : ");
+                    scanf("%lf", &t);
+                    printf("\n\t\t\t\t\t%.2lf Far is %.3lf Kel\n", t, ((t - 32) * 5.0 / 9.0) + 273.15);
+                    endl();
+            break;
+            case 5: printf("\n\n\t\t\t\t\t [5] Kelvin  To Celsius\n");
+                    endl();
+                    printf("\t\t\t\t\t Enter temperature in Kelvin : ");
+                    scanf("%lf", &t);
+                    printf("\n\t\t\t\t\t%.3lf Kel is %.2lf Cel\n", t, t - 273.15);
+                    endl();
+            break;
+            case 6: printf("\n\n\t\t\t\t\t [6] Kelvin  To  Fahrenheit\n");
+                    endl();
+                    printf("\t\t\t\t\t Enter temperature in Kelvin : ");
+                    scanf("%lf", &t);
+                    printf("\n\t\t\t\t\t%.3lf Kel is %.2lf Far\n", t, ((t - 273.15) * 9.0 / 5.0) + 32);
+                    endl();
+            break;
+            case 0:
+            printf("\n\n\t\t\t\t\tReturn to Main Menu...!\n");
+            endl();
+            return;
+            break;
+        default:
+            printf("\n\n\t\t\t\t\tINVALID INPUT!!! Try again...\n");
+            endl();
+        }
+    }
+}
+
+// Date Calculation ....
+struct Date {
+    int day;
+    int month;
+    int year;
+};
+
+// check if a year is a leap year
+int isLeapYear(int year) {
+    if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+        return 1;
+    return 0;
+}
+
+// Function to get the number of days in a month
+int daysInMonth(int month, int year) {
+    int days[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if (month == 2 && isLeapYear(year))
+        return 29;
+    return days[month - 1];
+}
+
+// Function to calculate difference between two dates
+void dateDifference(struct Date start, struct Date end, int *years, int *months, int *days) {
+    // Calculate days
+    if (end.day < start.day) {
+        end.day += daysInMonth(end.month - 1, end.year);
+        end.month--;
+    }
+    *days = end.day - start.day;
+
+    // Calculate months
+    if (end.month < start.month) {
+        end.month += 12;
+        end.year--;
+    }
+    *months = end.month - start.month;
+
+    // Calculate years
+    *years = end.year - start.year;
+}
+
+void date() {
+    struct Date start, end;
+    int years, months, days;
+
+    printf("\n\n\n\t\t\t\t\t\t===========================\n");
+    printf("\t\t\t\t\t      ** Date Calculater With Time **\n");
+    printf("\t\t\t\t\t\t===========================\n");
+
+    //input the start date
+    printf("\n\t\t\t\t\tEnter the start date (day month year): ");
+    scanf("%d %d %d", &start.day, &start.month, &start.year);
+
+    //input the end date
+    printf("\t\t\t\t\tEnter the end date (day month year): ");
+    scanf("%d %d %d", &end.day, &end.month, &end.year);
+
+    // Calculate the difference
+    dateDifference(start, end, &years, &months, &days);
+
+    // Display the result
+    printf("\n\t\t\t\t\tFrom: %d/%d/%d\n", start.day, start.month, start.year);
+    printf("\t\t\t\t\tTo: %d/%d/%d\n", end.day, end.month, end.year);
+    printf("\n\t\t\t\t\tDifference: %d Years, %d Months, %d Days\n", years, months, days);
+    endl();
+    return; //return to main menu...
 }
