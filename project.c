@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <string.h>
+#include <math.h>
 
 void welcomeMessage();
 void endl();
@@ -12,6 +13,7 @@ void time();
 void data();
 void temp();
 void BMI();
+void speed();
 
 // This are Date Calculation Funtion...
 struct Date;
@@ -19,6 +21,9 @@ int isLeapYear(int year);
 int daysInMonth(int month, int year);
 void dateDifference(struct Date start, struct Date end, int *years, int *months, int *days);
 void date(); // Main Date Calculate Function....
+
+// this is Numerical number system conversion Function...
+void numerical();
 
 int main() {
 int choice;
@@ -39,9 +44,9 @@ while(1) {
     printf("\t\t\t\t\t [6]  Temperature Conversion\n");
     printf("\t\t\t\t\t [7]  BMI Calculater\n");
     printf("\t\t\t\t\t [8]  Date Calculation\n");
+    printf("\t\t\t\t\t [9]  Speed Conversion\n");
+    printf("\t\t\t\t\t [10] Numeral System Conversion\n");
 //     printf("\t\t\t\t\t [6]  Volume Conversion\n");
-//     printf("\t\t\t\t\t [8]  Speed Conversion\n");
-//     printf("\t\t\t\t\t [10] Numeral System Conversion\n");
     printf("\t\t\t\t\t [0]  Exit\n");
     printf("\t\t\t\t\t===============================\n");
 
@@ -65,12 +70,13 @@ while(1) {
             break;
             case 8: date();
             break;
+            case 9: speed();
+            break;
+            case 10: numerical();
+            break;
         //     case 8:
         //     break;
-        //     case 9:
-        //     break;
-        //     case 10:
-        //     break;
+        
             case 0: printf("\n\n\t\t\t\t\t\t     * Thank You ! *\n\t\t\t\t\t\t   * Have A Nice Day.*\n");
                      endl();
                      exit(0);
@@ -836,7 +842,7 @@ void date() {
     int years, months, days;
 
     printf("\n\n\n\t\t\t\t\t\t===========================\n");
-    printf("\t\t\t\t\t      ** Date Calculater With Time **\n");
+    printf("\t\t\t\t\t\t   ** Date Calculater **\n");
     printf("\t\t\t\t\t\t===========================\n");
 
     //input the start date
@@ -857,3 +863,281 @@ void date() {
     endl();
     return; //return to main menu...
 }
+
+// Speed Conversion Function...
+void speed() {
+    int choice;
+    float speed;
+
+    while (1) {
+        printf("\n\n\n\t\t\t\t\t\t===========================\n");
+        printf("\t\t\t\t\t\t   ** Speed Conversion **\n");
+        printf("\t\t\t\t\t\t============================\n");
+        printf("\t\t\t\t\t\t 1. (km/h)  to  (m/s)\n");
+        printf("\t\t\t\t\t\t 2. (m/s)  to  (km/h)\n");
+        printf("\t\t\t\t\t\t 3. (Miles/h)  to  (km/h)\n");
+        printf("\t\t\t\t\t\t 4. (km/h)  to  (Miles/h)\n");
+        printf("\t\t\t\t\t\t 5. (Miles/h)  to  (m/s)\n");
+        printf("\t\t\t\t\t\t 6. (m/s)  to  (Miles/h)\n");
+        printf("\t\t\t\t\t\t 0. ...Main Menu...\n");
+        printf("\t\t\t\t\t\t============================\n");
+        printf("\t\t\t\t\t\tEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("\n\n\t\t\t\t\t [1] (km/h)  to  (m/s)\n");
+                    endl();
+                    printf("\t\t\t\t\t Enter speed (km/h): ");
+                    scanf("%f", &speed);
+                    printf("\n\t\t\t\t\t%.2f km/h is %.2f m/s\n", speed, speed / 3.6);
+                    endl();
+                break;
+            case 2:
+                printf("\n\n\t\t\t\t\t [2] (m/s)  to  (km/h)\n");
+                    endl();
+                    printf("\t\t\t\t\t Enter speed (m/s): ");
+                    scanf("%f", &speed);
+                    printf("\n\t\t\t\t\t%.2f m/s is %.2f km/h\n", speed, speed * 3.6);
+                    endl();
+                break;
+            case 3:
+                printf("\n\n\t\t\t\t\t [3] (Miles/h)  to  (km/h)\n");
+                    endl();
+                    printf("\t\t\t\t\t Enter speed (Miles/h): ");
+                    scanf("%f", &speed);
+                    printf("\n\t\t\t\t\t%.2f mph is %.2f km/h\n", speed, speed * 1.60934);
+                    endl();
+                break;
+            case 4:
+                printf("\n\n\t\t\t\t\t [4] (km/h)  to  (Miles/h)\n");
+                    endl();
+                    printf("\t\t\t\t\t Enter speed (km/h): ");
+                    scanf("%f", &speed);
+                    printf("\n\t\t\t\t\t%.2f km/h is %.2f mph\n", speed, speed / 1.60934);
+                    endl();
+                break;
+            case 5:
+                printf("\n\n\t\t\t\t\t [5] (Miles/h)  to  (m/s)\n");
+                    endl();
+                    printf("\t\t\t\t\t Enter speed (Miles/h): ");
+                    scanf("%f", &speed);
+                    printf("\n\t\t\t\t\t%.2f mph is %.2f m/s\n", speed, speed * 0.44704);
+                    endl();
+                break;
+            case 6:
+                printf("\n\n\t\t\t\t\t [6] (m/s)  to  (Miles/h)\n");
+                    endl();
+                    printf("\t\t\t\t\t Enter speed (m/s): ");
+                    scanf("%f", &speed);
+                    printf("\n\t\t\t\t\t%.2f m/s is %.2f mph\n", speed, speed / 0.44704);
+                    endl();
+                break;
+            case 0: 
+                printf("\n\n\t\t\t\t\tReturn to Main Menu...!\n");
+            endl();
+            return;
+            break;
+            default:
+                printf("\n\n\t\t\t\t\tINVALID INPUT!!! Try again...\n");
+            endl();
+        }
+    }
+}
+
+
+// Numerical Number system Conversion...
+
+void decimalToBinary(int n) {
+    printf("\n\t\t\t\t\tBinary: ");
+    for (int i = 31; i >= 0; i--) {
+        printf("%d", (n >> i) & 1);
+    }
+    printf("\n");
+}
+
+void binaryToDecimal(char *bin) {
+    int decimal = 0;
+    for (int i = 0; bin[i] != '\0'; i++) {
+        decimal = decimal * 2 + (bin[i] - '0');
+    }
+    printf("\n\t\t\t\t\tDecimal: %d\n", decimal);
+}
+
+void decimalToOctal(int n) {
+    printf("\n\t\t\t\t\tOctal: %o\n", n);
+}
+
+void octalToDecimal(char *oct) {
+    int decimal = 0;
+    for (int i = 0; oct[i] != '\0'; i++) {
+        decimal = decimal * 8 + (oct[i] - '0');
+    }
+    printf("\n\t\t\t\t\tDecimal: %d\n", decimal);
+}
+
+void decimalToHexadecimal(int n) {
+    printf("\n\t\t\t\t\tHexadecimal: %X\n", n);
+}
+
+void hexadecimalToDecimal(char *hex) {
+    int decimal = 0;
+    sscanf(hex, "%x", &decimal);
+    printf("\n\t\t\t\t\tDecimal: %d\n", decimal);
+}
+
+void binaryToOctal(char *bin) {
+    int decimal = 0, i = 0;
+    for (i = 0; bin[i] != '\0'; i++) {
+        decimal = decimal * 2 + (bin[i] - '0');
+    }
+    printf("\n\t\t\t\t\tOctal: %o\n", decimal);
+}
+
+void octalToBinary(char *oct) {
+    int decimal = 0, i = 0;
+    for (i = 0; oct[i] != '\0'; i++) {
+        decimal = decimal * 8 + (oct[i] - '0');
+    }
+    decimalToBinary(decimal);
+}
+
+void binaryToHexadecimal(char *bin) {
+    int decimal = 0;
+    for (int i = 0; bin[i] != '\0'; i++) {
+        decimal = decimal * 2 + (bin[i] - '0');
+    }
+    printf("\n\t\t\t\t\tHexadecimal: %X\n", decimal);
+}
+
+void hexadecimalToBinary(char *hex) {
+    int decimal = 0;
+    sscanf(hex, "%x", &decimal);
+    decimalToBinary(decimal);
+}
+
+void octalToHexadecimal(char *oct) {
+    int decimal = 0;
+    for (int i = 0; oct[i] != '\0'; i++) {
+        decimal = decimal * 8 + (oct[i] - '0');
+    }
+    printf("\n\t\t\t\t\tHexadecimal: %X\n", decimal);
+}
+
+void hexadecimalToOctal(char *hex) {
+    int decimal = 0;
+    sscanf(hex, "%x", &decimal);
+    printf("\n\t\t\t\t\tOctal: %o\n", decimal);
+}
+
+void numerical() {
+    int choice;
+    char input[32];
+    int decimal;
+
+    while (1) {
+        printf("\n\n\n\t\t\t\t\t=============================================\n");
+        printf("\t\t\t\t\t   ** Numerical Number System Conversion **\n");
+        printf("\t\t\t\t\t=============================================\n");
+        
+        printf("\t\t\t\t\t 1. Decimal to Binary\n");
+        printf("\t\t\t\t\t 2. Binary to Decimal\n");
+        printf("\t\t\t\t\t 3. Decimal to Octal\n");
+        printf("\t\t\t\t\t 4. Octal to Decimal\n");
+        printf("\t\t\t\t\t 5. Decimal to Hexadecimal\n");
+        printf("\t\t\t\t\t 6. Hexadecimal to Decimal\n");
+        printf("\t\t\t\t\t 7. Binary to Octal\n");
+        printf("\t\t\t\t\t 8. Octal to Binary\n");
+        printf("\t\t\t\t\t 9. Binary to Hexadecimal\n");
+        printf("\t\t\t\t\t 10. Hexadecimal to Binary\n");
+        printf("\t\t\t\t\t 11. Octal to Hexadecimal\n");
+        printf("\t\t\t\t\t 12. Hexadecimal to Octal\n");
+        printf("\t\t\t\t\t 0. ...Main Menu....\n");
+        printf("\t\t\t\t\t\t=============================================\n");
+        printf("\t\t\t\t\tEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("\n\t\t\t\t\t Enter Decimal Number: ");
+                scanf("%d", &decimal);
+                decimalToBinary(decimal);
+                endl();
+                break;
+            case 2:
+                printf("\n\t\t\t\t\t Enter Binary Number: ");
+                scanf("%s", input);
+                binaryToDecimal(input);
+                endl();
+                break;
+            case 3:
+                printf("\n\t\t\t\t\t Enter Decimal Number: ");
+                scanf("%d", &decimal);
+                decimalToOctal(decimal);
+                endl();
+                break;
+            case 4:
+                printf("\n\t\t\t\t\t Enter Octal Number: ");
+                scanf("%s", input);
+                octalToDecimal(input);
+                endl();
+                break;
+            case 5:
+                printf("\n\t\t\t\t\t Enter Decimal Number: ");
+                scanf("%d", &decimal);
+                decimalToHexadecimal(decimal);
+                endl();
+                break;
+            case 6:
+                printf("\n\t\t\t\t\t Enter Hexadecimal Number: ");
+                scanf("%s", input);
+                hexadecimalToDecimal(input);
+                endl();
+                break;
+            case 7:
+                printf("\n\t\t\t\t\t Enter Binary Number: ");
+                scanf("%s", input);
+                binaryToOctal(input);
+                endl();
+                break;
+            case 8:
+                printf("\n\t\t\t\t\t Enter Octal Number: ");
+                scanf("%s", input);
+                octalToBinary(input);
+                endl();
+                break;
+            case 9:
+                printf("\n\t\t\t\t\t Enter Binary Number: ");
+                scanf("%s", input);
+                binaryToHexadecimal(input);
+                endl();
+                break;
+            case 10:
+                printf("\n\t\t\t\t\t Enter Hexadecimal Number: ");
+                scanf("%s", input);
+                hexadecimalToBinary(input);
+                endl();
+                break;
+            case 11:
+                printf("\n\t\t\t\t\t Enter Octal Number: ");
+                scanf("%s", input);
+                octalToHexadecimal(input);
+                endl();
+                break;
+            case 12:
+                printf("\n\t\t\t\t\t Enter Hexadecimal Number: ");
+                scanf("%s", input);
+                hexadecimalToOctal(input);
+                endl();
+                break;
+            case 0: 
+                printf("\n\n\t\t\t\t\tReturn to Main Menu...!\n");
+            endl();
+            default:
+                printf("\n\n\t\t\t\t\tINVALID INPUT!!! Try again...\n");
+            endl();
+        }
+    }
+}
+
+
