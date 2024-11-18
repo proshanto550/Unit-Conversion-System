@@ -1053,7 +1053,7 @@ void numerical() {
         printf("\t\t\t\t\t 11. Octal to Hexadecimal\n");
         printf("\t\t\t\t\t 12. Hexadecimal to Octal\n");
         printf("\t\t\t\t\t 0. ...Main Menu....\n");
-        printf("\t\t\t\t\t\t=============================================\n");
+        printf("\t\t\t\t\t=============================================\n");
         printf("\t\t\t\t\tEnter your choice: ");
         scanf("%d", &choice);
 
@@ -1133,6 +1133,8 @@ void numerical() {
             case 0: 
                 printf("\n\n\t\t\t\t\tReturn to Main Menu...!\n");
             endl();
+            return;
+            break;
             default:
                 printf("\n\n\t\t\t\t\tINVALID INPUT!!! Try again...\n");
             endl();
