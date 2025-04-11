@@ -1,56 +1,54 @@
 
 Project Description:
 
-The Unit Conversion and BMI Calculation Tool is a simple, interactive, and user-friendly console application that allows users to perform various unit conversions and calculate their Body Mass Index (BMI). The tool provides a clean and easy-to-navigate menu system, guiding users through multiple conversion categories such as area, time, and data units, alongside a BMI calculation feature. The objective of the project is to create an all-in-one solution that is easily accessible for anyone needing unit conversions or health-related measurements in a compact format.
+# Unit Conversion System (CLI-Based)
 
-Key Features:
+**Project Timeline:** September – November 2024  
+**Language:** C  
+**Platform:** Command Line Interface (Terminal)
 
-Area Conversion:
+## 🔧 Project Overview
 
-Converts between square kilometers, hectares, and square meters.
-Allows users to input the value in one unit and get the result in the other units of area.
+This project was developed as part of my C programming learning phase. It’s a CLI-based tool that performs various unit conversions and basic calculations directly through the terminal. This allowed me to improve my understanding of core C concepts and apply real-world problem-solving logic.
 
-Time Conversion:
+## 🚀 Features
 
-Provides conversion between hours, minutes, and seconds.
-Can convert seconds into the format “Hour:Minute
-” for easy readability.
+- ✅ **Mass Conversion** (mg, g, kg, ton, pound)  
+- ✅ **Length Conversion** (mm, cm, m, km, inch, feet, yard, mile)  
+- ✅ **Time Conversion** (seconds, minutes, hours, days, weeks, months, years)  
+- ✅ **Area Conversion** (sq.mm, sq.cm, sq.m, acre, hectare)  
+- ✅ **Temperature Conversion** (Celsius, Fahrenheit, Kelvin)  
+- ✅ **BMI Calculator** (with category output)  
+- ✅ **Data Conversion** (bit, byte, KB, MB, etc.)  
+- ✅ **Date Difference Calculator** (dd/mm/yyyy format)  
+- ✅ **Speed Conversion** (km/h, m/s, mph)  
+- ✅ **Numeral System Converter** (Binary, Octal, Decimal, Hexadecimal)  
 
-Data Conversion:
+## 📚 Technologies & Concepts Used
 
-Converts data units such as bytes, kilobytes, megabytes, gigabytes, and terabytes.
-Useful for anyone dealing with digital storage or file sizes.
+- C Programming Language  
+- Functions & Modular Coding  
+- Loops and Conditional Statements  
+- Formatted Output (printf)  
+- User Input Handling  
+- Simple UI through Menu-Driven CLI  
 
-BMI Calculator:
+## 🎯 What I Learned
 
-Calculates Body Mass Index (BMI) based on a person’s weight (kg) and height (cm).
-Classifies BMI into different categories like Underweight, Normal weight, Overweight, and Obese.
+- Strengthened core C programming skills  
+- Applied logical thinking to real-world problems  
+- Hands-on experience with creating utility tools in C  
+- Gained confidence in CLI-based software development  
 
-Interactive Menu System:
+## 📎 Repository Link
 
-Simple, menu-driven system that allows users to easily navigate through the options and get the results instantly.
+👉 [Unit Conversion System on GitHub](https://github.com/proshanto550/Unit-Conversion-System)
 
-Clear and Precise Output:
+---
 
-Provides accurate results with the appropriate units, and BMI results are accompanied by clear classifications based on standard health categories.
+Feel free to fork or suggest improvements!  
+Happy Coding! 🚀
 
-Limitations:
-
-No Input Validation:
-
-The program does not have proper input validation for non-numeric or invalid input, which could lead to runtime errors or incorrect results if the user enters inappropriate data.
-
-Limited User Interface:
-
-The tool is console-based, with a text menu. It does not provide a graphical user interface (GUI), making it less accessible for users who may not be familiar with console applications.
-
-Lack of Advanced Features:
-
-The tool is focused on basic unit conversions and BMI calculation. It doesn't support more complex conversions or additional units like temperature, volume, or currency.
-
-No Unit Category Expansion:
-
-The current program includes only a limited number of unit categories (Area, Time, Data). The tool can be expanded to cover other categories like temperature, energy, etc., in future versions.
 
 Code Output: 
 
